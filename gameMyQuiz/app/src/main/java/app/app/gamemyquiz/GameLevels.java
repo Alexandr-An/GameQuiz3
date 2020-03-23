@@ -38,4 +38,16 @@ public class GameLevels extends AppCompatActivity {
             }
         });
     }
+
+    //системная кнопка назад начало
+    @Override
+    public void onBackPressed(){
+        try {
+            Intent intent = new Intent(GameLevels.this, MainActivity.class);
+            startActivity(intent);finish();
+        }catch (Exception e){
+
+        }
+    }
+    // системная кнопка назад конец
 }
