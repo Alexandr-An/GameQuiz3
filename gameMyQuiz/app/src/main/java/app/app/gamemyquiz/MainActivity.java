@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        Button buttonStart =(Button) findViewById(R.id.buttonStart);
+        Button buttonStart =(Button) findViewById(R.id.buttonStart);//связываем с gamelevels
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
