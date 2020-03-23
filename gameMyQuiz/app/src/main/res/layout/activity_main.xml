@@ -40,7 +40,11 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_stroke_black95_press_white"
             android:layout_weight="1"
-            android:text="Button" />
+            android:textSize="24sp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:text="@string/start"
+            android:textColor="@color/black95"/>
     </LinearLayout>
 
 </RelativeLayout>
