@@ -41,7 +41,7 @@
                     android:layout_marginRight="10dp"
                     android:text="@string/back"
                     android:textSize="40sp"
-                    android:padding="10dp"
+                   android:padding="10dp"
                     android:textAllCaps="false"
                     android:textColor="@color/white"/>
 
@@ -196,12 +196,12 @@
 
                 <ImageView
                     android:id="@+id/img_left"
-                    android:layout_width="wrap_content"
+                    android:layout_width="277dp"
                     android:layout_height="500dp"
                     android:layout_marginRight="5dp"
-                    android:scaleType="centerCrop"
-                    android:background="@drawable/style_img_universal"
                     android:layout_weight="1"
+                    android:background="@drawable/style_img_universal"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/imgtest" />
 
                 <ImageView
