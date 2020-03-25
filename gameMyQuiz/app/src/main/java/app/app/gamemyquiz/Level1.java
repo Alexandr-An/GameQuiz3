@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.CollapsibleActionView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -133,6 +134,29 @@ final Animation a = AnimationUtils.loadAnimation(Level1.this,R.anim.alpha);
         // цикл с предусловием проверяющий равенство чисел конец
         img_right.setImageResource(array.images1[numRight]);// достать из массива картинку
         text_right.setText(array.texts1[numRight]);// достать из массива текст
+
+        //обраю=ботка нажатия на левую картинку начало
+        img_left.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // условие касания картинки начло
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                // если коснулся картинки начало
+                  img_right.setEnabled(false);// блокировка правой картинки
+                    if (numLeft > numRight){
+                        img_left.setImageResource(R.drawable.img_true);
+                    }else {img_left.setImageResource(R.drawable.img_false);}
+                }else if(event.getAction() == MotionEvent.ACTION_UP){
+
+                // если отпустил палец начало
+
+                }
+                // условие касания картинки конец
+                return true;
+            }
+        });
+        //обраю=ботка нажатия на левую картинку конец
     }
     //сстемная кнопка назд начало
 @Override
