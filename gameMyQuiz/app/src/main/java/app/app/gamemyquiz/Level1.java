@@ -12,15 +12,25 @@ import android.view.CollapsibleActionView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Random;
 import java.util.logging.Level;
 
 
 public class Level1 extends AppCompatActivity {
     Dialog dialog;
+
+    public int numLeft;// левое изображение + текст
+    public int numRight;// правое изображение + текст
+    Array array = new Array();
+    Random random = new Random();
+
+    public int count = 0;// счётчик правильных ответов
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +48,11 @@ public class Level1 extends AppCompatActivity {
         final ImageView img_right= (ImageView)findViewById(R.id.img_right);
         //код который скругляет углы
         img_right.setClipToOutline(true);
+
+        // путь к левой textView
+        final TextView text_left = findViewById(R.id.text_left);
+        // путь к правой textView
+        final TextView text_right = findViewById(R.id.text_right);
 
         //развернуть инру на весь экран начало
         Window w = getWindow();
@@ -101,6 +116,23 @@ public class Level1 extends AppCompatActivity {
             }
         });
         //кнопка назад конец
+
+        //подключить анимацию начало
+final Animation a = AnimationUtils.loadAnimation(Level1.this,R.anim.alpha);
+        //подключить анимацию конец
+
+        numLeft = random.nextInt(10);//генерация случаёногог числа
+        img_left.setImageResource(array.images1[numLeft]);// достать из массива картинку
+        text_left.setText(array.texts1[numLeft]);// достать из массива текст
+
+        numRight = random.nextInt(10);//генерация случаёногог числа
+        // цикл с предусловием проверяющий равенство чисел начало
+        while (numLeft == numRight){
+            numRight = random.nextInt(5);
+        }
+        // цикл с предусловием проверяющий равенство чисел конец
+        img_right.setImageResource(array.images1[numRight]);// достать из массива картинку
+        text_right.setText(array.texts1[numRight]);// достать из массива текст
     }
     //сстемная кнопка назд начало
 @Override
