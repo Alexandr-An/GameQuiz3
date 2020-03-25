@@ -27,6 +27,11 @@ public class Level1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.universal);
 
+        // создать переменнуб text_levels
+        TextView text_levels = findViewById(R.id.text_levels);
+        text_levels.setText(R.string.level1);// установить текст
+
+
         final ImageView img_left= (ImageView)findViewById(R.id.img_left);
         //код который скругляет углы
         img_left.setClipToOutline(true);
