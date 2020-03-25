@@ -54,6 +54,25 @@ public class GameLevels extends AppCompatActivity {
 
         // кнопка для перехода на первый уровень конец
 
+
+
+
+        // кнопка для перехода на второй уровень начало
+        TextView textView2 = (TextView)findViewById(R.id.textView2);
+        textView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(GameLevels.this, Level2.class);
+                    startActivity(intent);finish();
+                }catch (Exception e){
+                    //пусто
+                }
+            }
+        });
+
+        // кнопка для перехода на второй уровень конец
+
     }
 
     //системная кнопка назад начало

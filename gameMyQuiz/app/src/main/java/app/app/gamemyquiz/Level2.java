@@ -63,6 +63,13 @@ public class Level2 extends AppCompatActivity {
         dialog.setContentView(R.layout.previewdialog);// путь к макету диалогового окна
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));// прозрачность диалогового окна
         dialog.setCancelable(false);// окно нельзя закрыть кнопкой назад
+
+        //устанавливаем картинку в дмалоговое окно нвчло
+        ImageView previewimg = (ImageView)dialog.findViewById(R.id.previewImg);
+        previewimg.setImageResource(R.drawable.previewimgtwo);
+
+        //устанавливаем картинку в дмалоговое окно конец
+
         //кнопка которая закрывает диалоговое окно начало
         TextView buttonclose = (TextView)dialog.findViewById(R.id.button_close);
         buttonclose.setOnClickListener(new View.OnClickListener() {
