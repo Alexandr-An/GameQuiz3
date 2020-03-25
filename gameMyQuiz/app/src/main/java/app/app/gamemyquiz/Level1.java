@@ -183,8 +183,49 @@ final Animation a = AnimationUtils.loadAnimation(Level1.this,R.anim.alpha);
 
                     }else {
                         //усли мент=ьше
+                        if(count > 0){
+                            if(count ==1){
+                                count =0;
+                            }else {
+                                count = count - 2;
+                            }
+                        }
+                        //закрашиваем прогресс серым цветом start
+                        for (int i = 0; i < 19; i++) {
+                            TextView tv = findViewById(progress[i]);
+                            tv.setBackgroundResource(R.drawable.style_points);
+                        }
+                        //закрашиваем прогресс серым цветом end
+
+                        //определить правильный ответ и закрасить в зеленый начало
+
+                        for (int i = 0; i < count; i++) {
+                            TextView tv = findViewById(progress[i]);
+                            tv.setBackgroundResource(R.drawable.style_points_green);
+                        }
+                        //определить правильный ответ и закрасить в зеленый конец
+
                     }
                 // если отпустил палец end
+                    if (count == 20){
+                        //ВЫХОД ИЗ УРОВНЯ
+                    }else{
+                        numLeft = random.nextInt(10);//генерация случаёногог числа
+                        img_left.setImageResource(array.images1[numLeft]);// достать из массива картинку
+                        img_left.startAnimation(a);
+                        text_left.setText(array.texts1[numLeft]);// достать из массива текст
+
+                        numRight = random.nextInt(10);//генерация случаёногог числа
+                        // цикл с предусловием проверяющий равенство чисел начало
+                        while (numLeft == numRight){
+                            numRight = random.nextInt(5);
+                        }
+                        // цикл с предусловием проверяющий равенство чисел конец
+                        img_right.setImageResource(array.images1[numRight]);// достать из массива картинку
+                        img_right.startAnimation(a);
+                        text_right.setText(array.texts1[numRight]);// достать из массива текст
+                        img_right.setEnabled(true);// включаем правую картинку
+                    }
 
 
                 }
