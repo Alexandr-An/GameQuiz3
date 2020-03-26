@@ -17,11 +17,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.w3c.dom.Text;
+
 import java.util.Random;
 
 
 public class Level2 extends AppCompatActivity {
     Dialog dialog;
+    Dialog dialogEnd;
 
     public int numLeft;// левое изображение + текст
     public int numRight;// правое изображение + текст
@@ -70,6 +73,12 @@ public class Level2 extends AppCompatActivity {
 
         //устанавливаем картинку в дмалоговое окно конец
 
+
+        //установка описания задания начало
+        TextView textdescription = (TextView)dialog.findViewById(R.id.textdescription);
+        textdescription.setText(R.string.leveltwo);
+        //установка описания задания конец
+
         //кнопка которая закрывает диалоговое окно начало
         TextView buttonclose = (TextView)dialog.findViewById(R.id.button_close);
         buttonclose.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +110,69 @@ public class Level2 extends AppCompatActivity {
         //кнопка продолжить конец
 
         dialog.show();//показать диалоговое окно
+
+
+
+        //_______________________________________________________________________________________________
+
+        //вызов диалогового окна в конце инры
+        dialogEnd = new Dialog(this);//пример диалогового окна
+        dialogEnd.requestWindowFeature(Window.FEATURE_NO_TITLE);//скрыть заголовок
+        dialogEnd.setContentView(R.layout.dialogend);// путь к макету диалогового окна
+        dialogEnd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));// прозрачность диалогового окна
+        dialogEnd.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT);
+        dialogEnd.setCancelable(false);// окно нельзя закрыть кнопкой назад
+
+        //Интересный факт начало
+        TextView textdescriptionEnd = (TextView)dialogEnd.findViewById(R.id.textdescriptionEnd);
+        textdescriptionEnd.setText(R.string.leveloneEnd);
+        //Интересный факт конец
+
+        //кнопка которая закрывает диалоговое окно начало
+        TextView buttonclose2 = (TextView)dialogEnd.findViewById(R.id.button_close);
+        buttonclose2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //обработка нажатич кнопки насало
+                try {
+                    //вернутся назад к выбору уровня начало
+                    Intent intent = new Intent(Level2.this, GameLevels.class);// намарение для переъода
+                    startActivity(intent); //старт намерения
+                    finish();//закрыть класс
+                    //вернутся назад к выбору уровня конец
+                }catch (Exception e){
+                    //пусто
+                }
+                dialog.dismiss();//закрыть диалоговое окно
+                //обработка нажатич кнопки конец
+            }
+        });
+        //кнопка которая закрывает диалоговое окно конец
+        //кнопка продолжить начало
+        Button buttoncontinue2 = (Button)dialogEnd.findViewById(R.id.buttonContinue);
+        buttoncontinue2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(Level2.this, Level2.class);
+                    startActivity(intent);
+                    finish();
+                }catch (Exception e){
+                    //пусто
+                }
+
+                dialogEnd.dismiss();//закрываем диалоговое окно
+            }
+        });
+        //кнопка продолжить конец
+
+
+        //_______________________________________________________________________________________________
+
+
+
+
 
         //кнопка назад начало
         Button btn_back = (Button)findViewById(R.id.button_back);
@@ -137,8 +209,8 @@ final Animation a = AnimationUtils.loadAnimation(Level2.this,R.anim.alpha);
         //подключить анимацию конец
 
         numLeft = random.nextInt(10);//генерация случаёногог числа
-        img_left.setImageResource(array.images1[numLeft]);// достать из массива картинку
-        text_left.setText(array.texts1[numLeft]);// достать из массива текст
+        img_left.setImageResource(array.images2[numLeft]);// достать из массива картинку
+        text_left.setText(array.texts2[numLeft]);// достать из массива текст
 
         numRight = random.nextInt(10);//генерация случаёногог числа
         // цикл с предусловием проверяющий равенство чисел начало
@@ -146,8 +218,8 @@ final Animation a = AnimationUtils.loadAnimation(Level2.this,R.anim.alpha);
             numRight = random.nextInt(5);
         }
         // цикл с предусловием проверяющий равенство чисел конец
-        img_right.setImageResource(array.images1[numRight]);// достать из массива картинку
-        text_right.setText(array.texts1[numRight]);// достать из массива текст
+        img_right.setImageResource(array.images2[numRight]);// достать из массива картинку
+        text_right.setText(array.texts2[numRight]);// достать из массива текст
 
         //обраю=ботка нажатия на левую картинку начало
         img_left.setOnTouchListener(new View.OnTouchListener() {
@@ -213,11 +285,12 @@ final Animation a = AnimationUtils.loadAnimation(Level2.this,R.anim.alpha);
                 // если отпустил палец end
                     if (count == 20){
                         //ВЫХОД ИЗ УРОВНЯ
+                        dialogEnd.show();
                     }else{
                         numLeft = random.nextInt(10);//генерация случаёногог числа
-                        img_left.setImageResource(array.images1[numLeft]);// достать из массива картинку
+                        img_left.setImageResource(array.images2[numLeft]);// достать из массива картинку
                         img_left.startAnimation(a);
-                        text_left.setText(array.texts1[numLeft]);// достать из массива текст
+                        text_left.setText(array.texts2[numLeft]);// достать из массива текст
 
                         numRight = random.nextInt(10);//генерация случаёногог числа
                         // цикл с предусловием проверяющий равенство чисел начало
@@ -225,9 +298,9 @@ final Animation a = AnimationUtils.loadAnimation(Level2.this,R.anim.alpha);
                             numRight = random.nextInt(5);
                         }
                         // цикл с предусловием проверяющий равенство чисел конец
-                        img_right.setImageResource(array.images1[numRight]);// достать из массива картинку
+                        img_right.setImageResource(array.images2[numRight]);// достать из массива картинку
                         img_right.startAnimation(a);
-                        text_right.setText(array.texts1[numRight]);// достать из массива текст
+                        text_right.setText(array.texts2[numRight]);// достать из массива текст
                         img_right.setEnabled(true);// включаем правую картинку
                     }
 
@@ -306,11 +379,12 @@ final Animation a = AnimationUtils.loadAnimation(Level2.this,R.anim.alpha);
                     // если отпустил палец end
                     if (count == 20){
                         //ВЫХОД ИЗ УРОВНЯ
+                        dialogEnd.show();
                     }else{
                         numLeft = random.nextInt(10);//генерация случаёногог числа
-                        img_left.setImageResource(array.images1[numLeft]);// достать из массива картинку
+                        img_left.setImageResource(array.images2[numLeft]);// достать из массива картинку
                         img_left.startAnimation(a);
-                        text_left.setText(array.texts1[numLeft]);// достать из массива текст
+                        text_left.setText(array.texts2[numLeft]);// достать из массива текст
 
                         numRight = random.nextInt(10);//генерация случаёногог числа
                         // цикл с предусловием проверяющий равенство чисел начало
@@ -318,9 +392,9 @@ final Animation a = AnimationUtils.loadAnimation(Level2.this,R.anim.alpha);
                             numRight = random.nextInt(5);
                         }
                         // цикл с предусловием проверяющий равенство чисел конец
-                        img_right.setImageResource(array.images1[numRight]);// достать из массива картинку
+                        img_right.setImageResource(array.images2[numRight]);// достать из массива картинку
                         img_right.startAnimation(a);
-                        text_right.setText(array.texts1[numRight]);// достать из массива текст
+                        text_right.setText(array.texts2[numRight]);// достать из массива текст
                         img_left.setEnabled(true);// включаем лекую картинку
                     }
 
